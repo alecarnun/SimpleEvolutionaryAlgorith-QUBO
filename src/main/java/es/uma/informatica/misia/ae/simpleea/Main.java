@@ -14,7 +14,7 @@ public class Main {
 		}
 		
 		int n = Integer.parseInt(args[3]);
-		Problem problem = new Onemax(n);
+		Problem problem = new QUBOProblem(n);
 		
 		Map<String, Double> parameters = readEAParameters(args);
 		EvolutionaryAlgorithm evolutionaryAlgorithm = new EvolutionaryAlgorithm(parameters, problem);
