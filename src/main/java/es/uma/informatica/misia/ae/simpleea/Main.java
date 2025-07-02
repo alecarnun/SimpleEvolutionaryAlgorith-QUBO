@@ -1,20 +1,29 @@
 package es.uma.informatica.misia.ae.simpleea;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
 
-	public static void main (String args []) {
+	public static void main (String args []) throws IOException {
 		
 		if (args.length < 4) {
 			System.err.println("Invalid number of arguments");
 			System.err.println("Arguments: <population size> <function evaluations> <bitflip probability> <problem size> [<random seed>]");
 			return;
 		}
-		
-		int n = Integer.parseInt(args[3]);
-		Problem problem = new QUBOProblem(n);
+
+		// Uso en el main:
+        double[][] Q = null;
+        try {
+            Q = readQUBOMatrix("src/main/resources/qubo_small_instance.csv", 768);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Problem problem = new QUBOProblem(Q);
 		
 		Map<String, Double> parameters = readEAParameters(args);
 		EvolutionaryAlgorithm evolutionaryAlgorithm = new EvolutionaryAlgorithm(parameters, problem);
@@ -35,6 +44,22 @@ public class Main {
 		}
 		parameters.put(EvolutionaryAlgorithm.RANDOM_SEED_PARAM, (double)randomSeed);
 		return parameters;
+	}
+
+	public static double[][] readQUBOMatrix(String filePath, int n) throws IOException {
+		double[][] Q = new double[n][n];
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+			String line;
+			int row = 0;
+			while ((line = br.readLine()) != null && row < n) {
+				String[] values = line.split(",");
+				for (int col = 0; col < n; col++) {
+					Q[row][col] = Double.parseDouble(values[col]);
+				}
+				row++;
+			}
+		}
+		return Q;
 	}
 
 }

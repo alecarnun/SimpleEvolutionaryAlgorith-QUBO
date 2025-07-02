@@ -13,7 +13,7 @@ public class QUBOProblem implements Problem{
 
 	public double evaluate(Individual individual) {
 		BinaryString binaryString = (BinaryString) individual;
-		int[] x = binaryString.getChromosome();
+		byte[] x = binaryString.getChromosome();
 		double result = 0.0;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
