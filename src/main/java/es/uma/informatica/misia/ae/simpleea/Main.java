@@ -19,7 +19,7 @@ public class Main {
 		// Uso en el main:
         double[][] Q = null;
         try {
-            Q = readQUBOMatrix("src/main/resources/qubo_small_instance.csv", 768);
+            Q = readQUBOMatrix("src/main/resources/qubo_instance_1.csv", 1024);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
