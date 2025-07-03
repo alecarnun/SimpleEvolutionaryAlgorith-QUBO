@@ -3,11 +3,14 @@ package es.uma.informatica.misia.ae.simpleea;
 import java.util.Random;
 
 public class SinglePointCrossover implements Crossover {
-	
+
+	private double crossoverProb;
 	private Random rnd;
-	
-	public SinglePointCrossover(Random rnd) {
-		this.rnd=rnd;
+	public static final String CROSSOVER_PROBABILITY_PARAM = "crossoverProbability";
+
+	public SinglePointCrossover (Random rnd, double crossoverProb) {
+		this.rnd = rnd;
+		this.crossoverProb = crossoverProb;
 	}
 
 	@Override
@@ -17,11 +20,20 @@ public class SinglePointCrossover implements Crossover {
 		
 		BinaryString child = new BinaryString (binaryParent1);
 		int cutPoint = rnd.nextInt(binaryParent1.getChromosome().length+1);
-		
 		for (int i=cutPoint; i < binaryParent1.getChromosome().length; i++) {
-			child.getChromosome()[i] = binaryParent2.getChromosome()[i];
+			if (rnd.nextDouble() < crossoverProb) {
+				child.getChromosome()[i] = binaryParent2.getChromosome()[i];
+			}
 		}
 		return child;
+	}
+
+	public double getCrossoverProb() {
+		return crossoverProb;
+	}
+
+	public void setCrossoverProb(double crossoverProb) {
+		this.crossoverProb = crossoverProb;
 	}
 
 }

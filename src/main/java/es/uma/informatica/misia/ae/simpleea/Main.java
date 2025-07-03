@@ -10,9 +10,9 @@ public class Main {
 
 	public static void main (String args []) throws IOException {
 		
-		if (args.length < 4) {
+		if (args.length < 5) {
 			System.err.println("Invalid number of arguments");
-			System.err.println("Arguments: <population size> <function evaluations> <bitflip probability> <problem size> [<random seed>]");
+			System.err.println("Arguments: <population size> <function evaluations> <bitflip probability> <crossover probability> <problem size> [<random seed>]");
 			return;
 		}
 
@@ -37,10 +37,11 @@ public class Main {
 		parameters.put(EvolutionaryAlgorithm.POPULATION_SIZE_PARAM, Double.parseDouble(args[0]));
 		parameters.put(EvolutionaryAlgorithm.MAX_FUNCTION_EVALUATIONS_PARAM, Double.parseDouble(args[1]));
 		parameters.put(BitFlipMutation.BIT_FLIP_PROBABILITY_PARAM, Double.parseDouble(args[2]));
-		
+		parameters.put(SinglePointCrossover.CROSSOVER_PROBABILITY_PARAM, Double.parseDouble(args[3]));
+
 		long randomSeed = System.currentTimeMillis();
-		if (args.length > 4) {
-			randomSeed = Long.parseLong(args[4]);
+		if (args.length > 5) {
+			randomSeed = Long.parseLong(args[5]);
 		}
 		parameters.put(EvolutionaryAlgorithm.RANDOM_SEED_PARAM, (double)randomSeed);
 		return parameters;

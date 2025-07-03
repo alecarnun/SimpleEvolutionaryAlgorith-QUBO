@@ -33,6 +33,7 @@ public class EvolutionaryAlgorithm {
 		populationSize = parameters.get(POPULATION_SIZE_PARAM).intValue();
 		maxFunctionEvaluations = parameters.get(MAX_FUNCTION_EVALUATIONS_PARAM).intValue();
 		double bitFlipProb = parameters.get(BitFlipMutation.BIT_FLIP_PROBABILITY_PARAM);
+		double crossoverProb = parameters.get(SinglePointCrossover.CROSSOVER_PROBABILITY_PARAM);
 		long randomSeed = parameters.get(RANDOM_SEED_PARAM).longValue();
 		
 		this.problem = problem; 
@@ -42,7 +43,7 @@ public class EvolutionaryAlgorithm {
 		selection = new BinaryTournament(rnd);
 		replacement = new ElitistReplacement();
 		mutation = new BitFlipMutation(rnd, bitFlipProb);
-		recombination = new SinglePointCrossover(rnd);
+		recombination = new SinglePointCrossover(rnd, crossoverProb);
 	}
 	
 	public Individual run() {
