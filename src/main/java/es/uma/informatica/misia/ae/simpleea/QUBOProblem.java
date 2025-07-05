@@ -21,7 +21,7 @@ public class QUBOProblem implements Problem{
 				result += Q[i][j] * x[i] * x[j];
 			}
 		}
-		return result;
+		return -result;
 	}
 	
 	public BinaryString generateRandomIndividual(Random rnd) {
