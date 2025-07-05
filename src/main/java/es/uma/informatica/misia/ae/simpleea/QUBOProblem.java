@@ -5,7 +5,7 @@ import java.util.Random;
 public class QUBOProblem implements Problem{
 	private final double[][] Q; // QUBO matrix
 	private int n; // Size of the problem
-	private double optimalValue = 123.45; // Optimal value of the problem
+	private double optimalValue; // Optimal value of the problem
 
 	public QUBOProblem(double[][] Q) {
 		this.Q = Q;
