@@ -51,8 +51,8 @@ public class EvolutionaryAlgorithm {
 		functionEvaluations = 0;
 		
 		evaluatePopulation(population);
-		//while (functionEvaluations < maxFunctionEvaluations){
-		while (bestSolution.getFitness() > problem.getOptimalValue()) {
+		while (functionEvaluations < maxFunctionEvaluations){
+		//while (bestSolution.getFitness() > problem.getOptimalValue()) {
 			Individual parent1 = selection.selectParent(population);
 			Individual parent2 = selection.selectParent(population);
 			Individual child = recombination.apply(parent1, parent2);
