@@ -59,6 +59,7 @@ public class EvolutionaryAlgorithm {
 			child = mutation.apply(child);
 			evaluateIndividual(child);
 			population = replacement.replacement(population, Arrays.asList(child));
+			problem.setOptimalValue(bestSolution.getFitness());
 		}
 
 		return bestSolution;

@@ -23,7 +23,7 @@ public class Main {
             throw new RuntimeException(e);
         }
         Problem problem = new QUBOProblem(Q);
-		problem.setOptimalValue(2883019.0);
+		problem.setOptimalValue(Double.MAX_VALUE);
 		
 		Map<String, Double> parameters = readEAParameters(args);
 		EvolutionaryAlgorithm evolutionaryAlgorithm = new EvolutionaryAlgorithm(parameters, problem);
